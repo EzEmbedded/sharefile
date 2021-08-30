@@ -4,9 +4,6 @@ on:
 
 env:
   FILE_ID: 1HbaB7glgDTYWrE4ieBkX6uK0sT223hCl
-#   FILE_NAME: multitool.img.xz
-#   CODE: $(awk '/_warning_/ {print $NF}' /sharefiledir/cookie)
-
 
 jobs:
   downgdrive:
@@ -23,5 +20,13 @@ jobs:
           sudo chown $USER:$GROUPS /sharefiledir 
           cd  /sharefiledir 
           wget https://drive.google.com/uc?id=$FILE_ID&export=download
-          # curl -sc /sharefiledir/cookie "https://drive.google.com/uc?export=download&id=$FILE_ID" > /dev/null
-          # curl -Lb /sharefiledir/cookie "https://drive.google.com/uc?export=download&confirm"=${"$CODE"}&id=$FILE_ID" -o $FILE_NAME
+          cd ../
+          tar -czvf sharefiledir.tar.gz ./sharefiledir
+
+      -
+        name: Upload firmware to WeTransfer
+        run: |
+          curl -fsSL git.io/file-transfer | sh
+          ./transfer wet -s -p 16 --no-progress sharefiledir.tar.gz 2>&1 | tee wetransfer.log
+          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+          echo "::set-output name=url::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
