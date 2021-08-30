@@ -20,7 +20,10 @@ jobs:
           sudo chown $USER:$GROUPS /sharefiledir 
           cd  /sharefiledir 
           wget https://drive.google.com/uc?id=$FILE_ID&export=download
+          ls -al
           cd ../
+          pwd
+          ls -al
           tar -czvf sharefiledir.tar.gz ./sharefiledir
 
       -
