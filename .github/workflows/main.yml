@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
 
 env:
-  FILE_ID: 1HbaB7glgDTYWrE4ieBkX6uK0sT223hCl
-  FILE_NAME: multitool.img.xz
-  CODE: $(awk '/_warning_/ {print $NF}' /sharefiledir/cookie)
+  # FILE_ID: 1HbaB7glgDTYWrE4ieBkX6uK0sT223hCl
+  # FILE_NAME: multitool.img.xz
+  # CODE: $(awk '/_warning_/ {print $NF}' /sharefiledir/cookie)
 
 
 jobs:
@@ -20,6 +20,8 @@ jobs:
         name: downfromgdrive
         run: |
           sudo mkdir -p /sharefiledir
-          sudo chown $USER:$GROUPS /sharefiledir          
-          curl -sc /sharefiledir/cookie "https://drive.google.com/uc?export=download&id=$FILE_ID" > /dev/null
-          curl -Lb /sharefiledir/cookie "https://drive.google.com/uc?export=download&confirm"=${"$CODE"}&id=$FILE_ID" -o $FILE_NAME
+          sudo chown $USER:$GROUPS /sharefiledir 
+          cd  /sharefiledir 
+          wget https://drive.google.com/uc?id=1HbaB7glgDTYWrE4ieBkX6uK0sT223hCl&export=download
+          # curl -sc /sharefiledir/cookie "https://drive.google.com/uc?export=download&id=$FILE_ID" > /dev/null
+          # curl -Lb /sharefiledir/cookie "https://drive.google.com/uc?export=download&confirm"=${"$CODE"}&id=$FILE_ID" -o $FILE_NAME
