@@ -18,7 +18,7 @@ jobs:
 
       -
         name: downfromgdrive
-        run： |
+        run: |
       #     sudo mkdir -p /sharefiledir
       #     sudo chown $USER:$GROUPS /sharefiledir          
       #     curl -sc /sharefiledir/cookie "https://drive.google.com/uc?export=download&id=$FILE_ID" > /dev/null
