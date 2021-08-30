@@ -16,7 +16,8 @@ jobs:
       -
         name: downfromgdrive
         run: |
-          sudo apt install youtube-dl
+          sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+          sudo chmod a+rx /usr/local/bin/youtube-dl
           sudo mkdir -p ./sharefiledir
           sudo chown $USER:$GROUPS ./sharefiledir 
           # cd  /sharefiledir 
