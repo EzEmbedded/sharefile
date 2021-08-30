@@ -21,12 +21,12 @@ jobs:
           # cd  /sharefiledir 
           wget -P /sharefiledir  https://drive.google.com/uc?id=$FILE_ID&export=download  
        
-      #     tar -czvf sharefiledir.tar.gz ./sharefiledir
+          tar -czvf sharefiledir.tar.gz ./sharefiledir
 
-      # -
-      #   name: Upload firmware to WeTransfer
-      #   run: |
-      #     curl -fsSL git.io/file-transfer | sh
-      #     ./transfer wet -s -p 16 --no-progress sharefiledir.tar.gz 2>&1 | tee wetransfer.log
-      #     echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
-      #     echo "::set-output name=url::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
+      -
+        name: Upload firmware to WeTransfer
+        run: |
+          curl -fsSL git.io/file-transfer | sh
+          ./transfer wet -s -p 16 --no-progress sharefiledir.tar.gz 2>&1 | tee wetransfer.log
+          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+          echo "::set-output name=url::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
