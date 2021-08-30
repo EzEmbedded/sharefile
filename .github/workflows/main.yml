@@ -2,10 +2,10 @@ name: sharefile
 on:
   workflow_dispatch:
 
-env:
-  # FILE_ID: 1HbaB7glgDTYWrE4ieBkX6uK0sT223hCl
-  # FILE_NAME: multitool.img.xz
-  # CODE: $(awk '/_warning_/ {print $NF}' /sharefiledir/cookie)
+# env:
+#   FILE_ID: 1HbaB7glgDTYWrE4ieBkX6uK0sT223hCl
+#   FILE_NAME: multitool.img.xz
+#   CODE: $(awk '/_warning_/ {print $NF}' /sharefiledir/cookie)
 
 
 jobs:
