@@ -19,7 +19,7 @@ jobs:
           sudo mkdir -p /sharefiledir
           sudo chown $USER:$GROUPS /sharefiledir 
           # cd  /sharefiledir 
-          wget https://drive.google.com/uc?id=$FILE_ID&export=download  /sharefiledir
+          wget -P /sharefiledir  https://drive.google.com/uc?id=$FILE_ID&export=download  
        
       #     tar -czvf sharefiledir.tar.gz ./sharefiledir
 
