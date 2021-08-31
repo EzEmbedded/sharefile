@@ -1,9 +1,14 @@
 name: sharefile
 on:
   workflow_dispatch:
+    input:
+      file_ID:
+        description: 'google drive share file ID'
+        required: true
+        default: 'abc123456789012345678901234567890'
 
-env:
-  FILE_ID: 1HbaB7glgDTYWrE4ieBkX6uK0sT223hCl
+# env:
+#   FILE_ID: 1HbaB7glgDTYWrE4ieBkX6uK0sT223hCl
 
 jobs:
   downgdrive:
@@ -21,7 +26,7 @@ jobs:
           sudo mkdir -p ./sharefiledir
           sudo chown $USER:$GROUPS ./sharefiledir 
           # cd  /sharefiledir 
-          wget -P ./sharefiledir  https://drive.google.com/uc?id=$FILE_ID&export=download  
+          wget -P ./sharefiledir  https://drive.google.com/uc?id=${{ github.event.inputs.file_ID }}&export=download  
        
           
 
