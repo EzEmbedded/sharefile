@@ -26,7 +26,7 @@ jobs:
           sudo mkdir -p ./sharefiledir
           sudo chown $USER:$GROUPS ./sharefiledir 
           # cd  /sharefiledir 
-          wget -P ./sharefiledir  https://drive.google.com/uc?id=${{ github.event.inputs.file_ID }}&export=download  
+          wget -v -P ./sharefiledir  https://drive.google.com/uc?id=${{ github.event.inputs.file_ID }}&export=download  
        
           
 
