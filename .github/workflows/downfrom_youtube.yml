@@ -29,7 +29,7 @@ jobs:
           sudo chmod a+rx /usr/local/bin/youtube-dl
           sudo mkdir -p ./youtubesharefiledir
           sudo chown $USER:$GROUPS ./youtubesharefiledir 
-          /usr/local/bin/youtube-dl -f 22 https://www.youtube.com/watch?v=6wtvyzKj2n8 
+          /usr/local/bin/youtube-dl -f 22 https://www.youtube.com/watch?v=6wtvyzKj2n8 --output  ./youtubesharefiledir/%(title)s_%(id)s.%(ext)s
           # cd  /sharefiledir 
           # wget -c --limit-rate=20m -P ./sharefiledir  https://drive.google.com/uc?id=${{ github.event.inputs.file_ID }}&export=download  
           # wget  --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=${{ github.event.inputs.file_ID }}' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=${{ github.event.inputs.file_ID }}" -O ${{ github.event.inputs.file_name }}
