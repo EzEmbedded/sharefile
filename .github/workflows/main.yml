@@ -3,9 +3,13 @@ on:
   workflow_dispatch:
     inputs:
       file_ID:
-        description: 'google drive share file ID'
+        description: 'input file ID'
         required: true
         default: 'abc123456789012345678901234567890'
+      file_name:
+        description: 'input file name'
+        required: true
+        default: 'test.gz'        
 
 # env:
 #   FILE_ID: 1HbaB7glgDTYWrE4ieBkX6uK0sT223hCl
@@ -26,8 +30,10 @@ jobs:
           sudo mkdir -p ./sharefiledir
           sudo chown $USER:$GROUPS ./sharefiledir 
           # cd  /sharefiledir 
-          wget -c --limit-rate=20m -P ./sharefiledir  https://drive.google.com/uc?id=${{ github.event.inputs.file_ID }}&export=download  
-       
+          # wget -c --limit-rate=20m -P ./sharefiledir  https://drive.google.com/uc?id=${{ github.event.inputs.file_ID }}&export=download  
+          wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=${{ github.event.inputs.file_ID }}' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=${{ github.event.inputs.file_ID }}" -O ${{ github.event.inputs.file_name }}
+
+
           
 
       -
