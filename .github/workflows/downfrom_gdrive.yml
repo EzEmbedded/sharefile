@@ -1,4 +1,4 @@
-name: sharefile
+name: share_gdrivefile
 on:
   workflow_dispatch:
     inputs:
