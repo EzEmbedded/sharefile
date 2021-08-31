@@ -2,14 +2,14 @@ name: share_youtubefile
 on:
   workflow_dispatch:
     inputs:
-      file_ID:
-        description: 'input file ID'
+      file_URL:
+        description: 'input file URL'
         required: true
-        default: 'abc123456789012345678901234567890'
-      file_name:
-        description: 'input file name'
+        default: 'https://www.youtube.com/watch?v=xxxxxxxxxxx'
+      video_fomat:
+        description: 'input video fomat:160/mp4/256X144.133/mp4/426x244,18/mp4/540x360,22/mp4/1280x720,43/webm/640x360'
         required: true
-        default: 'test.gz'        
+        default: '22'        
 
 # env:
 #   FILE_ID: 1HbaB7glgDTYWrE4ieBkX6uK0sT223hCl
@@ -29,13 +29,7 @@ jobs:
           sudo chmod a+rx /usr/local/bin/youtube-dl
           sudo mkdir -p ./youtubesharefiledir
           sudo chown $USER:$GROUPS ./youtubesharefiledir 
-          /usr/local/bin/youtube-dl  -f 22 https://www.youtube.com/watch?v=6wtvyzKj2n8 -o './youtubesharefiledir/%(title)s_%(id)s.%(ext)s'
-          # cd  /sharefiledir 
-          # wget -c --limit-rate=20m -P ./sharefiledir  https://drive.google.com/uc?id=${{ github.event.inputs.file_ID }}&export=download  
-          # wget  --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=${{ github.event.inputs.file_ID }}' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=${{ github.event.inputs.file_ID }}" -O ${{ github.event.inputs.file_name }}
-          # mv  ${{ github.event.inputs.file_name }} ./sharefiledir
-          
-
+          /usr/local/bin/youtube-dl  -f ${{ github.event.inputs.video_fomat }} '${{ github.event.inputs.file_URL }}' -o './youtubesharefiledir/%(title)s_%(id)s.%(ext)s'
       -
         name: Upload file to WeTransfer
         run: |
