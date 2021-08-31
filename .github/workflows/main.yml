@@ -1,7 +1,7 @@
 name: sharefile
 on:
   workflow_dispatch:
-    input:
+    inputs:
       file_ID:
         description: 'google drive share file ID'
         required: true
