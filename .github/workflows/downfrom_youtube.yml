@@ -29,6 +29,7 @@ jobs:
           sudo chmod a+rx /usr/local/bin/youtube-dl
           sudo mkdir -p ./youtubesharefiledir
           sudo chown $USER:$GROUPS ./youtubesharefiledir 
+          /usr/local/bin/youtube-dl  --list-formats '${{ github.event.inputs.file_URL }}'
           /usr/local/bin/youtube-dl  -f ${{ github.event.inputs.video_fomat }} '${{ github.event.inputs.file_URL }}' -o './youtubesharefiledir/%(title)s_%(id)s.%(ext)s'
       -
         name: Upload file to WeTransfer
